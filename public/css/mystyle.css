@@ -1,0 +1,32 @@
+.global-message{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    min-width: 500px;
+    border-radius: 50px;
+    color: #fff !important;
+    z-index: 2;
+}
+
+.global-message.info{
+    background-color: #0fa04b ;
+}
+
+.global-message.error{
+    background-color: #d81d1d;
+}
+
+/* Danh mục tin tức style  */
+.categories_col .block-21 .text{
+    width: 100%;
+}
+
+.global-message.alert.alert-danger.subscribe-error{
+    background-color: #dc3545 ;
+    width: 200px;
+}
+
+
+.global-message.alert.alert-danger.subscribe-success{
+    background-color: #0fa04b ;
+}
