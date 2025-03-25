@@ -1,71 +1,83 @@
-🕹️ Trang Tin Tức Game - PHP
-<!-- Thêm link hình ảnh banner -->
+🎮 Game News - Dự án Laravel Tin Tức Game
 
-📢 Dự án Trang Tin Tức Game giúp cập nhật thông tin mới nhất về game, sự kiện, và đánh giá game từ nhiều nguồn khác nhau. Được xây dựng bằng PHP, Laravel, MySQL, cùng giao diện hiện đại, dễ sử dụng.
+🚀 Giới thiệu
 
-📸 Demo
-💡 (Thay thế bằng ảnh chụp màn hình của trang web)
+Game News là một dự án web được xây dựng bằng Laravel nhằm cung cấp tin tức mới nhất về game, đánh giá, hướng dẫn chơi và các thông tin liên quan đến cộng đồng game thủ.
 
+🛠️ Công nghệ sử dụng
 
+📂 Cấu trúc thư mục
 
-🔧 Công Nghệ Sử Dụng
-Công Nghệ	Phiên Bản
-PHP	8.x
-Laravel	10.x
-MySQL	8.x
-Bootstrap	5.x
-JavaScript	ES6+
-📂 Cấu Trúc Thư Mục
-bash
-Sao chép
-Chỉnh sửa
-/DOANPHP
-│── /public            # Chứa assets (CSS, JS, hình ảnh)
-│── /resources
-│   ├── /views         # Giao diện (Blade Templates)
-│   ├── /css           # CSS tùy chỉnh
-│── /routes
-│   ├── web.php        # Định tuyến website
-│── /app
-│   ├── /Http/Controllers  # Controller xử lý dữ liệu
-│   ├── /Models        # Models kết nối DB
-│── .env               # File cấu hình môi trường
-│── composer.json      # Quản lý package PHP
-│── README.md          # File này 😎
-🚀 Cách Cài Đặt
-1️⃣ Clone Repo
-sh
-Sao chép
-Chỉnh sửa
-git clone https://github.com/your-username/game-news-php.git
-cd game-news-php
-2️⃣ Cài đặt dependencies
-sh
-Sao chép
-Chỉnh sửa
+Dự án tuân theo cấu trúc chuẩn của Laravel:
+
+📌 app/        - Chứa các model, controller, middleware, services xử lý logic chính của ứng dụng.
+📌 bootstrap/  - Chứa file `app.php`, giúp bootstrap ứng dụng Laravel.
+📌 config/     - Chứa file cấu hình như database, auth, mail...
+📌 database/   - Chứa migrations, seeders, factories để quản lý dữ liệu.
+📌 lang/       - Chứa các file dịch ngôn ngữ (đa ngôn ngữ cho dự án).
+📌 public/     - Chứa tài nguyên công khai như ảnh, CSS, JS.
+📌 resources/  - Chứa blade templates (giao diện), SCSS, JavaScript.
+📌 routes/     - Chứa định nghĩa các route (web.php, api.php...).
+📌 storage/    - Chứa logs, cache, file tải lên.
+📌 tests/      - Chứa các test tự động cho dự án.
+📌 vendor/     - Chứa các package do Composer cài đặt.
+
+🎯 Các tính năng chính
+
+✔ Quản lý tin tức: Thêm, sửa, xóa bài viết.
+✔ Danh mục game: Phân loại tin tức theo các tựa game hoặc thể loại game.
+✔ Tìm kiếm & Lọc: Cho phép người dùng tìm kiếm tin tức theo từ khóa.
+✔ Bình luận & Thảo luận: Người dùng có thể đăng nhập và bình luận về các bài viết.
+✔ Quản lý người dùng: Phân quyền Admin, Editor và User.
+✔ Hệ thống đăng nhập & đăng ký: Hỗ trợ xác thực qua email.
+
+🏗️ Cài đặt
+
+⚙️ Yêu cầu hệ thống
+
+✔ PHP >= 8.0
+✔ Composer
+✔ MySQL hoặc PostgreSQL
+✔ Node.js (nếu sử dụng frontend JavaScript framework)
+✔ Docker (nếu sử dụng Laravel Sail)
+
+📌 Hướng dẫn cài đặt
+
+# Clone dự án
+git clone https://github.com/your-repo/game-news.git
+cd game-news
+
+# Cài đặt dependencies
 composer install
 npm install
-3️⃣ Cấu hình file .env
-sh
-Sao chép
-Chỉnh sửa
+
+# Cấu hình file .env
 cp .env.example .env
+
+# Tạo khóa ứng dụng
 php artisan key:generate
-4️⃣ Khởi chạy dự án
-sh
-Sao chép
-Chỉnh sửa
+
+# Chạy migration và seed dữ liệu
+php artisan migrate --seed
+
+# Chạy ứng dụng
 php artisan serve
-🔹 Mở trình duyệt: http://127.0.0.1:8000
+# Truy cập http://127.0.0.1:8000
 
-🌟 Tính Năng Chính
-✅ Danh mục tin tức theo thể loại
-✅ Đánh giá game mới nhất
-✅ Tìm kiếm và lọc bài viết
-✅ Hỗ trợ quản trị viên đăng bài
+# (Tùy chọn) Chạy với Docker
+./vendor/bin/sail up -d
+# Truy cập http://localhost
 
-💡 Đóng Góp
-Nếu bạn muốn đóng góp, hãy Fork repo này và gửi Pull Request! 🚀
+📖 Hướng dẫn sử dụng
 
-🔗 Liên hệ: [Email của bạn] | [Facebook] | [Website]
+📌 Truy cập trang chủ để xem tin tức mới nhất.
+📌 Đăng nhập để đăng bình luận và lưu bài viết yêu thích.
+📌 Admin có thể quản lý bài viết và người dùng từ trang Dashboard.
 
+🤝 Đóng góp
+
+💡 Nếu bạn muốn đóng góp, vui lòng fork dự án và gửi pull request. Chúng tôi rất hoan nghênh sự đóng góp từ cộng đồng! 🚀
+
+📜 License
+
+📜 Dự án này được phát hành dưới giấy phép MIT.
