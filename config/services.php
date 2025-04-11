@@ -34,6 +34,11 @@ return [
     'mailchimp' => [
         'apikey' => env('MAILCHIMP_KEY'),
         'prefix' => env ('MAILCHIMP_PREFIX'),
-    ]
+    ],
+    'google' => [
+        'redirect' => 'http://127.0.0.1:8000/auth/google/callback',
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'), 
+    ],
 
 ];
