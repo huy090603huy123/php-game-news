@@ -29,6 +29,23 @@ class AdminPostsController extends Controller
         ]);
     }
 
+
+    public function deleteSelected(Request $request)
+    {
+        $ids = $request->input('ids');
+    
+        if (!empty($ids)) {
+            Post::whereIn('id', $ids)->delete();
+            return response()->json(['message' => 'Đã xóa các bài viết đã chọn thành công.']);
+        }
+    
+        return response()->json(['message' => 'Không có bài viết nào được chọn.', 'status' => 'error']);
+    }
+
+
+
+
+
     public function create()
     {
         return view('admin_dashboard.posts.create',[

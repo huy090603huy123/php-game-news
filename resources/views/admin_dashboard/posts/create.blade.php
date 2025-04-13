@@ -14,7 +14,7 @@
 		}
 	</style> -->
 
-	<script src="https://cdn.tiny.cloud/1/5nk94xe9fcwk22fkp6gou9ymszwidnujnr2mu3n3xe2biap3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+	<script src="https://cdn.tiny.cloud/1/y1uwb2bmrtih2zyp4uty925ft66xae3ws9z9yz3pshwr9ody/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 @endsection
 		
 @section("wrapper")

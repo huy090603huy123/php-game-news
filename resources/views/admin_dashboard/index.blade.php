@@ -194,7 +194,7 @@
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                labels: ['16/06/2022', '17/06/2022', '18/06/2022', '19/06/2022', '20/06/2022', '21/06/2022', '22/06/2022'],
+                labels: @json($labels),
                 datasets: [{
                     label: 'Lượt xem',
                     data: [ 10, 13, 9,16, 10, 12,15],
@@ -206,7 +206,7 @@
                     borderWidth: 0
                 }, {
                     label: 'Bình luận',
-                    data: [ 8, 14, 19, 12, 7, 18, 8],
+                    data: @json($commentsData), 
                     borderColor: gradientStroke2,
                     backgroundColor: gradientStroke2,
                     hoverBackgroundColor: gradientStroke2,

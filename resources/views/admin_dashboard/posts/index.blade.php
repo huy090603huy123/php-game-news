@@ -18,7 +18,7 @@
             </div>
         </div>
         <!--end breadcrumb-->
-        
+     
         <div class="card">
             <div class="card-body">
                 <div class="d-lg-flex align-items-center mb-4 gap-3">
@@ -26,6 +26,7 @@
                         <input type="text" class="form-control ps-5 radius-30" placeholder="Tìm kiếm bài viết"> <span class="position-absolute top-50 product-show translate-middle-y"><i class="bx bx-search"></i></span>
                     </div>
                     <div class="ms-auto"><a href="{{ route('admin.posts.create') }}" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Thêm bài viết mới</a></div>
+                    <button id="delete-selected" class="btn btn-danger">Xóa tất cả đã chọn</button>
                 </div>
                 <div class="table-responsive">
                     <table class="table mb-0">
@@ -47,7 +48,7 @@
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div>
-                                            <input class="form-check-input me-3" type="checkbox" value="" aria-label="...">
+                                            <input type="checkbox" name="selected_posts[]" value="{{ $post->id }}" class="post-checkbox">
                                         </div>
                                         <div class="ms-2">
                                             <h6 class="mb-0 font-14">#P-{{ $post->id }}</h6>
@@ -106,5 +107,47 @@
 
 		});
 	</script>
+
+    <script>
+        $(document).ready(function () {
+            // Chọn/bỏ chọn tất cả
+            $('#select-all').change(function () {
+                $('.post-checkbox').prop('checked', this.checked);
+            });
+
+            // Xóa các bài viết đã chọn
+            $('#delete-selected').click(function () {
+                var selectedPosts = $('input[name="selected_posts[]"]:checked').map(function () {
+                    return this.value;
+                }).get();
+
+                if (selectedPosts.length > 0) {
+                    if (confirm('Bạn có chắc chắn muốn xóa các bài viết đã chọn?')) {
+                        $.ajax({
+                            url: '/admin/posts/delete-selected', // URL để xóa
+                            type: 'DELETE',
+                            data: {
+                                ids: selectedPosts,
+                                _token: '{{ csrf_token() }}'
+                            },
+                            success: function (response) {
+                                // Xử lý thành công (ví dụ: tải lại trang hoặc xóa các hàng đã chọn)
+                                alert(response.message);
+                                location.reload();
+                            },
+                            error: function (error) {
+                                // Xử lý lỗi
+                                alert('Đã có lỗi xảy ra.');
+                            }
+                        });
+                    }
+                } else {
+                    alert('Vui lòng chọn các bài viết cần xóa.');
+                }
+            });
+        });
+    </script>
+
+
 
 @endsection

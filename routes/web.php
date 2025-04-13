@@ -32,11 +32,23 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\NewsletterController;
-
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\Auth\LoginWithGoogleController; // Bạn sẽ tạo Controller này ở bước 6
 
 // Điều hướng cho User
 
+
+// ===== ROUTE CHO GOOGLE LOGIN (Đảm bảo có đoạn này) =====
+Route::get('/auth/google/redirect', [LoginWithGoogleController::class, 'redirectToGoogle'])->name('google.redirect'); // Phải có ->name('google.redirect')
+Route::get('/auth/google/callback', [LoginWithGoogleController::class, 'handleGoogleCallback'])->name('google.callback'); // Phải có ->name('google.callback')
+
+
+
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+
+Route::delete('/admin/posts/delete-selected', [AdminPostsController::class, 'deleteSelected'])->name('admin.posts.deleteSelected');
 
 Route::get('/tai-khoan', [HomeController::class, 'profile'])->name('profile');
 Route::post('/tai-khoan', [HomeController::class, 'update'])->name('update');
@@ -67,6 +79,9 @@ Route::post('email',[NewsletterController::class, 'store'])->name('newsletter_st
 require __DIR__.'/auth.php';
 
 
+
+
+
 // Điều hướng cho trang quản trị admin -
 Route::prefix('admin')->name('admin.')->middleware(['auth','check_permissions'])->group(function(){
     Route::get('/', [DashboardController::class, 'index'])->name('index');
@@ -87,5 +102,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','check_permissions'])
 
     Route::get('about',[AdminSettingController::class, 'edit'])->name('setting.edit');
     Route::post('about',[AdminSettingController::class, 'update'])->name('setting.update');
+
+    Route::post('/admin/users', [AdminUsersController::class, 'store']);
+    Route::get('/admin/users/create', [AdminUsersController::class, 'create'])->name('admin.users.create');
+    
+
+
+ 
 });
 

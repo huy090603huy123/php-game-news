@@ -42,18 +42,18 @@ class DatabaseSeeder extends Seeder
 
         $users = \App\Models\User::factory(10)->create();
         \App\Models\User::Factory()->create([
-            'name' => 'Hồ Anh Tuấn',
-            'email' => 'anhtuana2k422001@gmail.com',
+            'name' => 'Nguyễn Nhật Huy',
+            'email' => 'huy090603huy@gmail.com',
             'role_id' => 2
         ]);
         \App\Models\User::Factory()->create([
-            'name' => 'Nguyễn Hải Dương',
-            'email' => 'nguyenhaiduong@gmail.com',
+            'name' => 'Công Chiến',
+            'email' => 'chien1801@gmail.com',
             'role_id' => 2
         ]);
         \App\Models\User::Factory()->create([
-            'name' => 'Võ Anh Quân',
-            'email' => 'voanhquan@gmail.com',
+            'name' => 'Đức Anh',
+            'email' => 'ducanh1111@gmail.com',
             'role_id' => 2
         ]);
   
@@ -69,9 +69,9 @@ class DatabaseSeeder extends Seeder
                 \App\Models\Category::factory()->create(['name' => $Category_defaule]);
         }
 
-        $posts = \App\Models\Post::factory(200)->create();
+        $posts = \App\Models\Post::factory(130)->create();
 
-        \App\Models\Comment::factory(100)->create();
+        \App\Models\Comment::factory(50)->create();
 
         \App\Models\Tag::factory(20)->create();
 

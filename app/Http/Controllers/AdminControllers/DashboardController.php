@@ -11,6 +11,9 @@ use App\Models\Category;
 use App\Models\Role;
 use App\Models\Visitor;
 
+use App\Models\Comment;
+use Illuminate\Support\Facades\DB;
+
 class DashboardController extends Controller
 {
     public function index(Request $request){
@@ -20,6 +23,43 @@ class DashboardController extends Controller
         $visitorDuration = Visitor::avg('duration'); // Tính trung bình thời gian truy cập
         $pagesPerVisit = Visitor::avg('pages_visited');
  
+
+        $viewsData = Post::select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as views'))
+        ->whereDate('created_at', '>=', now()->subDays(6))
+        ->groupBy('date')
+        ->orderBy('date')
+        ->pluck('views', 'date')
+        ->toArray();
+
+    // Lấy dữ liệu bình luận theo ngày
+        $commentsData = Comment::select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as comments'))
+        ->whereDate('created_at', '>=', now()->subDays(6))
+        ->groupBy('date')
+        ->orderBy('date')
+        ->pluck('comments', 'date')
+        ->toArray();
+
+    // Tạo mảng labels chứa các ngày
+        $labels = [];
+        for ($i = 6; $i >= 0; $i--) {
+            $labels[] = now()->subDays($i)->format('d/m/Y');
+            $date = now()->subDays($i)->format('Y-m-d');
+            // Đảm bảo có giá trị 0 nếu không có dữ liệu cho ngày đó
+            if (!isset($viewsData[$date])) {
+                $viewsData[$date] = 0;
+            }
+            if (!isset($commentsData[$date])) {
+                $commentsData[$date] = 0;
+            }
+        }
+
+
+
+
+
+
+
+
         $countPost = Post::all()->count();
         $countCategories = Category::all()->count();
 
@@ -49,6 +89,9 @@ class DashboardController extends Controller
             'overallVisitor' => $overallVisitor,
             'visitorDuration' => $visitorDuration,
             'pagesPerVisit' => $pagesPerVisit,
+            'viewsData' => array_values($viewsData),
+            'commentsData' => array_values($commentsData),
+            'labels' => $labels,
         ]);
     }
 
