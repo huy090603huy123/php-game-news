@@ -60,7 +60,7 @@ class AdminUsersStoreTest extends TestCase
         $this->assertDatabaseHas('users', ['name' => 'Nhat Huy', 'email' => 'huy0509huy@gmail.com']);
 
         // Sử dụng assertTrue để kiểm tra xem tệp có tồn tại
-        //$this->assertTrue(Storage::disk('public')->exists('storage/images/profile.jpg'));
+        $this->assertTrue(Storage::disk('public')->exists('storage/images/profile.jpg'));
     }
 
     /** @test */
